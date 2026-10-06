@@ -2329,218 +2329,448 @@ setTimeout(function() {
             
         }
     </style>
-    <script>
-     
- 
-        const bgMusic = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-btn');
-        const musicIcon = document.getElementById('music-icon');
+<script>
 
-        let isPlaying = false;
+const bgMusic = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-btn');
+const musicIcon = document.getElementById('music-icon');
 
-        musicBtn.addEventListener('click', () => {
-            if (isPlaying) {
-                bgMusic.pause();
-                musicIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
-                isPlaying = false;
-            } else {
-                bgMusic.play().then(() => {
-                    musicIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-                    isPlaying = true;
-                }).catch(e => console.log(e));
-            }
+let isPlaying = false;
+
+
+/* ==========================================
+   BOTÓN DE MÚSICA
+========================================== */
+
+musicBtn.addEventListener('click', function() {
+
+    if (isPlaying) {
+
+        bgMusic.pause();
+
+        musicIcon.innerHTML =
+            '<path d="M8 5v14l11-7z"/>';
+
+        isPlaying = false;
+
+    } else {
+
+        bgMusic.play().then(function() {
+
+            musicIcon.innerHTML =
+                '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+
+            isPlaying = true;
+
+        }).catch(function(error) {
+
+            console.log('No se pudo reproducir la música:', error);
+
         });
 
+    }
 
-        video.addEventListener('ended', () => {
-            videoContainer.style.opacity = '0';
-            setTimeout(() => {
-                videoContainer.style.display = 'none';
-                mainInvitation.style.visibility = 'visible';
-                mainInvitation.style.opacity = '1';
-                bgMusic.play().then(() => {
-                    musicIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-                    isPlaying = true;
-                }).catch(() => {});
-            }, 1000);
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll('.fade-in-element').forEach(el => observer.observe(el));
-
-        // Lightbox y menú de compartir
-        const lightboxModal = document.getElementById('lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxClose = document.getElementById('lightbox-close');
-        const btnMinimize = document.getElementById('btn-minimize');
-        const btnFullscreen = document.getElementById('btn-fullscreen');
-        const btnZoomOut = document.getElementById('btn-zoom-out');
-        const btnZoomIn = document.getElementById('btn-zoom-in');
-        const btnShareMenu = document.getElementById('btn-share-menu');
-        const shareDropdown = document.getElementById('share-dropdown');
-        const shareFb = document.getElementById('share-fb');
-        const shareX = document.getElementById('share-x');
-        const sharePinterest = document.getElementById('share-pinterest');
-        const shareDownload = document.getElementById('share-download');
-
-        let currentScale = 1;
-const galleryPhotos = document.querySelectorAll('.gallery-photo');
-const lightboxCounter = document.getElementById('lightbox-counter');
-const lightboxPrev = document.getElementById('lightbox-prev');
-const lightboxNext = document.getElementById('lightbox-next');
-
-let currentPhotoIndex = 0;
-
-function showLightboxPhoto(index) {
-    currentPhotoIndex = (index + galleryPhotos.length) % galleryPhotos.length;
-
-    lightboxImg.src = galleryPhotos[currentPhotoIndex].src;
-
-    lightboxCounter.textContent =
-        `${currentPhotoIndex + 1}/${galleryPhotos.length}`;
-
-    currentScale = 1;
-    lightboxImg.style.transform = 'scale(1)';
-    shareDropdown.classList.remove('active');
-}
-
-lightboxPrev.addEventListener('click', (e) => {
-    e.stopPropagation();
-    showLightboxPhoto(currentPhotoIndex - 1);
 });
 
-lightboxNext.addEventListener('click', (e) => {
-    e.stopPropagation();
-    showLightboxPhoto(currentPhotoIndex + 1);
-});
-     galleryPhotos.forEach((photo, index) => {
-    photo.addEventListener('click', () => {
-        showLightboxPhoto(index);
-        lightboxModal.classList.add('active');
-    });
-});
 
-        lightboxClose.addEventListener('click', () => {
-            lightboxModal.classList.remove('active');
-            shareDropdown.classList.remove('active');
-        });
-
-        lightboxModal.addEventListener('click', (e) => {
-            if (e.target === lightboxModal) {
-                lightboxModal.classList.remove('active');
-                shareDropdown.classList.remove('active');
-            }
-        });
-
-        btnMinimize.addEventListener('click', () => { currentScale = 1; lightboxImg.style.transform = `scale(1)`; shareDropdown.classList.remove('active'); });
-        btnFullscreen.addEventListener('click', () => {
-            shareDropdown.classList.remove('active');
-            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
-            else if (document.exitFullscreen) document.exitFullscreen();
-        });
-        btnZoomOut.addEventListener('click', () => { shareDropdown.classList.remove('active'); if (currentScale > 1) { currentScale -= 0.3; lightboxImg.style.transform = `scale(${currentScale})`; } });
-        btnZoomIn.addEventListener('click', () => { shareDropdown.classList.remove('active'); if (currentScale < 3) { currentScale += 0.3; lightboxImg.style.transform = `scale(${currentScale})`; } });
-
-        btnShareMenu.addEventListener('click', (e) => { e.stopPropagation(); shareDropdown.classList.toggle('active'); });
-        document.addEventListener('click', () => shareDropdown.classList.remove('active'));
-        shareDropdown.addEventListener('click', (e) => e.stopPropagation());
-
-        shareFb.addEventListener('click', () => { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank', 'width=600,height=400'); shareDropdown.classList.remove('active'); });
-        shareX.addEventListener('click', () => { window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent('Mis XV Años - Fiorella Salvatierra')}`, '_blank', 'width=600,height=400'); shareDropdown.classList.remove('active'); });
-        sharePinterest.addEventListener('click', () => { window.open(`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(window.location.href)}&media=${encodeURIComponent(lightboxImg.src)}&description=${encodeURIComponent('Mis XV Años')}`, '_blank', 'width=600,height=400'); shareDropdown.classList.remove('active'); });
-        shareDownload.addEventListener('click', () => { shareDownload.href = lightboxImg.src; shareDownload.download = 'foto-xv.jpg'; shareDropdown.classList.remove('active'); });
-
-        // Cuenta regresiva
-        const eventDate = new Date('December 12, 2026 19:30:00').getTime();
-        function updateCountdown() {
-            const distance = eventDate - new Date().getTime();
-            if (distance < 0) return;
-            document.getElementById('days').innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
-            document.getElementById('hours').innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-    
-
-introScreen.addEventListener("click", function () {
-
-    introScreen.style.opacity = "0";
-    
-    setTimeout(() => {
-        introScreen.style.display = "none";
-        videoContainer.style.display = "flex";
-
-        video.play().catch(error => {
-            console.log("No se pudo reproducir el video:", error);
-        });
-    }, 500);
-});
-
-video.addEventListener("ended", function () {
-    videoContainer.style.opacity = "0";
-
-    setTimeout(() => {
-        videoContainer.style.display = "none";
-
-        const invitacion = document.getElementById("main-invitation");
-        invitacion.style.visibility = "visible";
-        invitacion.style.opacity = "1";
-    }, 1000);
-});
+/* ==========================================
+   ELEMENTOS DE LA PORTADA
+========================================== */
 
 const introScreen = document.getElementById('intro-screen');
 const videoContainer = document.getElementById('video-container');
 const video = document.getElementById('intro-video');
 const mainInvitation = document.getElementById('main-invitation');
 
-introScreen.addEventListener('click', function () {
 
-    // Ocultar el sobre
+/* ==========================================
+   TOCAR EL SOBRE → REPRODUCIR VIDEO
+========================================== */
+
+introScreen.addEventListener('click', function() {
+
+    // Ocultar sobre
     introScreen.style.opacity = '0';
 
-    // Mostrar video
-    setTimeout(function () {
+    setTimeout(function() {
 
         introScreen.style.display = 'none';
+
+        // Mostrar video
         videoContainer.style.display = 'flex';
+        videoContainer.style.opacity = '1';
 
         // Reiniciar video
         video.currentTime = 0;
 
-        // Reproducir por acción directa del usuario
-        video.play().then(function () {
-            console.log('Video reproduciéndose');
-        }).catch(function (error) {
-            console.error('Error al reproducir el video:', error);
+        // Reproducir video
+        video.play().then(function() {
+
+            console.log('VIDEO REPRODUCIÉNDOSE');
+
+        }).catch(function(error) {
+
+            console.error('ERROR AL REPRODUCIR VIDEO:', error);
+
         });
 
     }, 500);
+
 });
 
 
-/* Cuando termina el video */
-video.addEventListener('ended', function () {
+/* ==========================================
+   CUANDO TERMINA EL VIDEO
+========================================== */
+
+video.addEventListener('ended', function() {
 
     videoContainer.style.opacity = '0';
 
-    setTimeout(function () {
+    setTimeout(function() {
 
         videoContainer.style.display = 'none';
 
+        // Mostrar invitación
         mainInvitation.style.visibility = 'visible';
         mainInvitation.style.opacity = '1';
+
+        // Intentar iniciar música
+        bgMusic.play().then(function() {
+
+            musicIcon.innerHTML =
+                '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+
+            isPlaying = true;
+
+        }).catch(function() {
+
+            console.log('La música requiere interacción del usuario.');
+
+        });
 
     }, 1000);
 
 });
-    </script>
-    
+
+
+/* ==========================================
+   ANIMACIONES AL HACER SCROLL
+========================================== */
+
+const observer = new IntersectionObserver(function(entries) {
+
+    entries.forEach(function(entry) {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+
+    });
+
+}, {
+    threshold: 0.2
+});
+
+document.querySelectorAll('.fade-in-element').forEach(function(el) {
+
+    observer.observe(el);
+
+});
+
+
+/* ==========================================
+   LIGHTBOX
+========================================== */
+
+const lightboxModal = document.getElementById('lightbox-modal');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.getElementById('lightbox-close');
+
+const btnMinimize = document.getElementById('btn-minimize');
+const btnFullscreen = document.getElementById('btn-fullscreen');
+const btnZoomOut = document.getElementById('btn-zoom-out');
+const btnZoomIn = document.getElementById('btn-zoom-in');
+
+const btnShareMenu = document.getElementById('btn-share-menu');
+const shareDropdown = document.getElementById('share-dropdown');
+
+const shareFb = document.getElementById('share-fb');
+const shareX = document.getElementById('share-x');
+const sharePinterest = document.getElementById('share-pinterest');
+const shareDownload = document.getElementById('share-download');
+
+const galleryPhotos = document.querySelectorAll('.gallery-photo');
+
+const lightboxCounter = document.getElementById('lightbox-counter');
+const lightboxPrev = document.getElementById('lightbox-prev');
+const lightboxNext = document.getElementById('lightbox-next');
+
+let currentScale = 1;
+let currentPhotoIndex = 0;
+
+
+function showLightboxPhoto(index) {
+
+    currentPhotoIndex =
+        (index + galleryPhotos.length) % galleryPhotos.length;
+
+    lightboxImg.src =
+        galleryPhotos[currentPhotoIndex].src;
+
+    lightboxCounter.textContent =
+        `${currentPhotoIndex + 1}/${galleryPhotos.length}`;
+
+    currentScale = 1;
+
+    lightboxImg.style.transform = 'scale(1)';
+
+    shareDropdown.classList.remove('active');
+
+}
+
+
+lightboxPrev.addEventListener('click', function(e) {
+
+    e.stopPropagation();
+
+    showLightboxPhoto(currentPhotoIndex - 1);
+
+});
+
+
+lightboxNext.addEventListener('click', function(e) {
+
+    e.stopPropagation();
+
+    showLightboxPhoto(currentPhotoIndex + 1);
+
+});
+
+
+galleryPhotos.forEach(function(photo, index) {
+
+    photo.addEventListener('click', function() {
+
+        showLightboxPhoto(index);
+
+        lightboxModal.classList.add('active');
+
+    });
+
+});
+
+
+lightboxClose.addEventListener('click', function() {
+
+    lightboxModal.classList.remove('active');
+
+    shareDropdown.classList.remove('active');
+
+});
+
+
+lightboxModal.addEventListener('click', function(e) {
+
+    if (e.target === lightboxModal) {
+
+        lightboxModal.classList.remove('active');
+
+        shareDropdown.classList.remove('active');
+
+    }
+
+});
+
+
+btnMinimize.addEventListener('click', function() {
+
+    currentScale = 1;
+
+    lightboxImg.style.transform = 'scale(1)';
+
+    shareDropdown.classList.remove('active');
+
+});
+
+
+btnFullscreen.addEventListener('click', function() {
+
+    shareDropdown.classList.remove('active');
+
+    if (!document.fullscreenElement) {
+
+        document.documentElement.requestFullscreen()
+            .catch(function(){});
+
+    } else if (document.exitFullscreen) {
+
+        document.exitFullscreen();
+
+    }
+
+});
+
+
+btnZoomOut.addEventListener('click', function() {
+
+    shareDropdown.classList.remove('active');
+
+    if (currentScale > 1) {
+
+        currentScale -= 0.3;
+
+        lightboxImg.style.transform =
+            `scale(${currentScale})`;
+
+    }
+
+});
+
+
+btnZoomIn.addEventListener('click', function() {
+
+    shareDropdown.classList.remove('active');
+
+    if (currentScale < 3) {
+
+        currentScale += 0.3;
+
+        lightboxImg.style.transform =
+            `scale(${currentScale})`;
+
+    }
+
+});
+
+
+btnShareMenu.addEventListener('click', function(e) {
+
+    e.stopPropagation();
+
+    shareDropdown.classList.toggle('active');
+
+});
+
+
+document.addEventListener('click', function() {
+
+    shareDropdown.classList.remove('active');
+
+});
+
+
+shareDropdown.addEventListener('click', function(e) {
+
+    e.stopPropagation();
+
+});
+
+
+shareFb.addEventListener('click', function() {
+
+    window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
+        '_blank',
+        'width=600,height=400'
+    );
+
+    shareDropdown.classList.remove('active');
+
+});
+
+
+shareX.addEventListener('click', function() {
+
+    window.open(
+        `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent('Mis XV Años - Fiorella Salvatierra')}`,
+        '_blank',
+        'width=600,height=400'
+    );
+
+    shareDropdown.classList.remove('active');
+
+});
+
+
+sharePinterest.addEventListener('click', function() {
+
+    window.open(
+        `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(window.location.href)}&media=${encodeURIComponent(lightboxImg.src)}&description=${encodeURIComponent('Mis XV Años')}`,
+        '_blank',
+        'width=600,height=400'
+    );
+
+    shareDropdown.classList.remove('active');
+
+});
+
+
+shareDownload.addEventListener('click', function() {
+
+    shareDownload.href = lightboxImg.src;
+
+    shareDownload.download = 'foto-xv.jpg';
+
+    shareDropdown.classList.remove('active');
+
+});
+
+
+/* ==========================================
+   CUENTA REGRESIVA
+========================================== */
+
+const eventDate =
+    new Date('December 12, 2026 19:30:00').getTime();
+
+
+function updateCountdown() {
+
+    const distance =
+        eventDate - new Date().getTime();
+
+    if (distance < 0) return;
+
+    document.getElementById('days').innerText =
+        String(
+            Math.floor(
+                distance / (1000 * 60 * 60 * 24)
+            )
+        ).padStart(2, '0');
+
+    document.getElementById('hours').innerText =
+        String(
+            Math.floor(
+                (distance % (1000 * 60 * 60 * 24))
+                / (1000 * 60 * 60)
+            )
+        ).padStart(2, '0');
+
+    document.getElementById('minutes').innerText =
+        String(
+            Math.floor(
+                (distance % (1000 * 60 * 60))
+                / (1000 * 60)
+            )
+        ).padStart(2, '0');
+
+    document.getElementById('seconds').innerText =
+        String(
+            Math.floor(
+                (distance % (1000 * 60))
+                / 1000
+            )
+        ).padStart(2, '0');
+
+}
+
+
+setInterval(updateCountdown, 1000);
+
+updateCountdown();
+
+
+</script>
 </body>
 </html>
