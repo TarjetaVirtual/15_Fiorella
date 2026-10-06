@@ -535,7 +535,9 @@
     <button class="music-floating-btn" id="music-btn" title="Reproducir / Pausar música">
         <svg id="music-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
     </button>
-
+<div id="intro-screen">
+    <img src="sobre.png" alt="Abrir invitación">
+</div>
     <div id="video-container">
         <video id="intro-video" playsinline muted>
             <source src="videosobre.mp4" type="video/mp4">
@@ -2277,8 +2279,7 @@ setTimeout(function() {
         }
     </style>
     <script>
-        const videoContainer = document.getElementById('video-container');
-        const video = document.getElementById('intro-video');
+     
         const mainInvitation = document.getElementById('main-invitation');
         const bgMusic = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
@@ -2420,6 +2421,36 @@ lightboxNext.addEventListener('click', (e) => {
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
+        const introScreen = document.getElementById("intro-screen");
+const videoContainer = document.getElementById("video-container");
+const video = document.getElementById("intro-video");
+
+introScreen.addEventListener("click", function () {
+
+    introScreen.style.opacity = "0";
+    
+    setTimeout(() => {
+        introScreen.style.display = "none";
+        videoContainer.style.display = "flex";
+
+        video.play().catch(error => {
+            console.log("No se pudo reproducir el video:", error);
+        });
+    }, 500);
+});
+
+video.addEventListener("ended", function () {
+    videoContainer.style.opacity = "0";
+
+    setTimeout(() => {
+        videoContainer.style.display = "none";
+
+        const invitacion = document.getElementById("main-invitation");
+        invitacion.style.visibility = "visible";
+        invitacion.style.opacity = "1";
+    }, 1000);
+});
     </script>
+    
 </body>
 </html>
