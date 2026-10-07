@@ -73,7 +73,7 @@
             position: relative;
             width: 100vw;
             height: 100vh;
-            background-image: url('foto1.png');
+            background-image: url('image_dd3a01c.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -524,6 +524,69 @@
 .lightbox-arrow:hover {
     opacity: 0.7;
 }
+<style>
+/* ==============================
+   SECCIÓN DE PASES
+   ============================== */
+
+#pases-section {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 70px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.pases-container {
+    width: 100%;
+    max-width: 410px;
+    padding: 35px 25px;
+    box-sizing: border-box;
+}
+
+.pases-decoracion {
+    font-size: 25px;
+    color: #b85c79;
+    margin-bottom: 12px;
+}
+
+.pases-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    font-weight: normal;
+    color: #555555;
+    margin: 0 0 12px 0;
+}
+
+.pases-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: #777777;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.pases-numero {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-style: italic;
+    color: #b85c79;
+    line-height: 1;
+    margin: 15px 0 3px 0;
+}
+
+.pases-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #b85c79;
+    margin: 0 0 20px 0;
+}
+</style>
     </style>
 </head>
 <body>
@@ -809,7 +872,30 @@ Mariana Zambrano </div>
     <br>
      <br>
       <br>
-   
+   <!-- SECCIÓN DE PASES -->
+<section id="pases-section">
+    <div class="pases-container">
+
+        <div class="pases-decoracion">♥</div>
+
+        <h2 class="pases-title">Pases de Acceso</h2>
+
+        <p class="pases-text">
+            Hemos reservado para ti
+        </p>
+
+        <div class="pases-numero" id="numeroPases">1</div>
+
+        <p class="pases-label" id="textoPases">
+            pase
+        </p>
+
+        <p class="pases-text">
+            Te esperamos para celebrar juntos este día tan especial.
+        </p>
+
+    </div>
+</section>
 
 <img src="Captura de pantalla 2026-10-06 131417.png" alt="Adorno floral" style="display: block; margin: 0 auto; max-width: 200px; width: 100%; height: auto;">  
 <!-- SECCIÓN CÍRCULO INTERACTIVO CON CONFETI -->
@@ -2294,6 +2380,202 @@ setTimeout(function() {
                     0px -30px 0 3px rgba(115, 182, 255, 0);
             }
         }
+
+
+ 
+/* =========================================
+   SECCIÓN DE PASES - DISEÑO ELEGANTE
+   ========================================= */
+
+#pases-section {
+    width: 100%;
+    padding: 70px 20px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* TARJETA DEL PASE */
+.pases-container {
+    width: 100%;
+    max-width: 380px;
+    min-height: 300px;
+    padding: 42px 30px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    background: #fff;
+
+    border: 1px solid rgba(184, 92, 121, 0.45);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+    text-align: center;
+}
+
+/* SEGUNDO MARCO INTERIOR */
+.pases-container::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+
+    border: 1px solid rgba(184, 92, 121, 0.18);
+
+    pointer-events: none;
+}
+
+/* DECORACIÓN SUPERIOR */
+.pases-decoracion {
+    width: 100%;
+    margin: 0 0 8px 0;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+
+    color: #b85c79;
+
+    text-align: center;
+}
+
+/* TÍTULO */
+.pases-title {
+    width: 100%;
+
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.3rem;
+    font-weight: normal;
+
+    color: #555555;
+
+    margin: 0 0 8px 0;
+
+    line-height: 1.1;
+    text-align: center;
+}
+
+/* LÍNEA DECORATIVA */
+.pases-title::after {
+    content: "";
+    display: block;
+
+    width: 55px;
+    height: 1px;
+
+    background: #b85c79;
+
+    margin: 12px auto 18px auto;
+}
+
+/* TEXTO */
+.pases-text {
+    width: 100%;
+    max-width: 280px;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+
+    color: #777777;
+
+    line-height: 1.6;
+
+    margin: 0 auto 15px auto;
+
+    text-align: center;
+}
+
+/* NÚMERO DEL PASE */
+.pases-numero {
+    width: 100%;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 4.8rem;
+    font-weight: 500;
+    font-style: normal;
+
+    color: #b85c79;
+
+    line-height: 1;
+
+    margin: 5px 0 5px 0;
+
+    text-align: center;
+}
+
+/* PALABRA PASE */
+.pases-label {
+    width: 100%;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 5px;
+
+    color: #555555;
+
+    margin: 0;
+
+    text-align: center;
+}
+
+/* DETALLE INFERIOR */
+.pases-container::after {
+    content: "✦";
+
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 12px;
+    color: #b85c79;
+}
+
+/* =========================================
+   CELULAR
+   ========================================= */
+
+@media (max-width: 480px) {
+
+    #pases-section {
+        padding: 55px 15px;
+    }
+
+    .pases-container {
+        max-width: 350px;
+        min-height: 285px;
+        padding: 38px 25px;
+    }
+
+    .pases-title {
+        font-size: 3rem;
+    }
+
+    .pases-numero {
+        font-size: 4.4rem;
+    }
+
+    .pases-text {
+        font-size: 0.9rem;
+    }
+}
+
     </style>
     <script>
         const videoContainer = document.getElementById('video-container');
@@ -2363,6 +2645,87 @@ setTimeout(function() {
         const shareDownload = document.getElementById('share-download');
 
         let currentScale = 1;
+        // ==========================================
+// GALERÍA DINÁMICA - FLECHAS + CONTADOR
+// ==========================================
+
+const galleryPhotos = Array.from(
+    document.querySelectorAll('.gallery-photo')
+);
+
+const lightboxPrev = document.getElementById('lightbox-prev');
+const lightboxNext = document.getElementById('lightbox-next');
+const lightboxCounter = document.getElementById('lightbox-counter');
+
+let currentPhotoIndex = 0;
+
+// Mostrar una foto específica
+function showGalleryPhoto(index) {
+
+    if (galleryPhotos.length === 0) return;
+
+    // Hacer que la galería sea circular
+    if (index < 0) {
+        index = galleryPhotos.length - 1;
+    }
+
+    if (index >= galleryPhotos.length) {
+        index = 0;
+    }
+
+    currentPhotoIndex = index;
+
+    const photo = galleryPhotos[currentPhotoIndex];
+
+    lightboxImg.src = photo.src;
+    lightboxImg.alt = photo.alt || 'Foto';
+
+    // Reiniciar zoom
+    currentScale = 1;
+    lightboxImg.style.transform = 'scale(1)';
+
+    // Actualizar contador automáticamente
+    lightboxCounter.textContent =
+        `${currentPhotoIndex + 1}/${galleryPhotos.length}`;
+
+    shareDropdown.classList.remove('active');
+}
+
+
+// FOTO ANTERIOR
+lightboxPrev.addEventListener('click', function(e) {
+
+    e.stopPropagation();
+
+    showGalleryPhoto(currentPhotoIndex - 1);
+
+});
+
+
+// FOTO SIGUIENTE
+lightboxNext.addEventListener('click', function(e) {
+
+    e.stopPropagation();
+
+    showGalleryPhoto(currentPhotoIndex + 1);
+
+});
+
+
+// Al hacer clic en una foto de la galería
+galleryPhotos.forEach((photo, index) => {
+
+    photo.addEventListener('click', function() {
+
+        currentPhotoIndex = index;
+
+        showGalleryPhoto(currentPhotoIndex);
+
+        lightboxModal.classList.add('active');
+
+    });
+
+});
 
         document.querySelectorAll('.gallery-photo').forEach(photo => {
             photo.addEventListener('click', () => {
@@ -2416,6 +2779,35 @@ setTimeout(function() {
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+      
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Leer los parámetros de la URL
+    const parametros = new URLSearchParams(window.location.search);
+
+    // Obtener el número de pases
+    let pases = parseInt(parametros.get("pases"));
+
+    // Si no existe o no es válido, usar 1
+    if (isNaN(pases) || pases < 1) {
+        pases = 1;
+    }
+
+    // Limitar máximo a 4 pases
+    if (pases > 4) {
+        pases = 4;
+    }
+
+    // Mostrar número
+    document.getElementById("numeroPases").textContent = pases;
+
+    // Cambiar "pase" / "pases"
+    document.getElementById("textoPases").textContent =
+        pases === 1 ? "pase" : "pases";
+
+});
+
     </script>
 </body>
 </html>
